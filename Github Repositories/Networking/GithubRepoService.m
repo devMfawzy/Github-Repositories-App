@@ -31,7 +31,9 @@
     NSURL * url = [self urlOfRepositoriesInPage:page limit:limit];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     NSURLSessionDataTask *dataTask = [_session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        compeletionBlock(data,error);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            compeletionBlock(data,error);
+        });
     }];
     [dataTask resume];
 }
