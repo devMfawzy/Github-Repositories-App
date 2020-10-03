@@ -11,4 +11,5 @@ import Foundation
 protocol ViewModelDelegate: class {
     func didUpdateData()
     func willFetchData()
+    func didFindError(description: String)
 }

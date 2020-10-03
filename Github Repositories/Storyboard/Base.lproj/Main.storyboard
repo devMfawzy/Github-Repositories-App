@@ -38,11 +38,19 @@
                                 <rect key="frame" x="0.0" y="426" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V4I-q5-2P7">
+                                <rect key="frame" x="0.0" y="88" width="414" height="654"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="V4I-q5-2P7" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-120" id="6Af-Vb-9Gd"/>
                             <constraint firstItem="7qX-RK-rWz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="J4c-yt-6Ib"/>
+                            <constraint firstItem="V4I-q5-2P7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="JxP-pI-Ctg"/>
                             <constraint firstItem="7qX-RK-rWz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="bDN-ag-ffu"/>
+                            <constraint firstItem="V4I-q5-2P7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ctp-lq-PP0"/>
+                            <constraint firstItem="V4I-q5-2P7" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="jp9-aH-RtN"/>
                             <constraint firstItem="7qX-RK-rWz" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="nZ4-bE-IUD"/>
                             <constraint firstItem="7qX-RK-rWz" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="yrd-EQ-Ws6"/>
                         </constraints>
@@ -51,6 +59,7 @@
                     <navigationItem key="navigationItem" title="Repositories" largeTitleDisplayMode="always" id="TFp-5k-Zc9"/>
                     <connections>
                         <outlet property="activityIndicator" destination="kYt-Bf-QWl" id="No7-t1-Qwf"/>
+                        <outlet property="errorPlaceholderView" destination="V4I-q5-2P7" id="HQX-bn-mrp"/>
                         <outlet property="tableView" destination="7qX-RK-rWz" id="dKO-YB-lax"/>
                     </connections>
                 </viewController>

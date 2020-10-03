@@ -31,6 +31,8 @@ class RepositoriesViewModel {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 guard let repositories = try? decoder.decode([Repository].self, from: data) else {
+                    self?.isFetchingData = false
+                    self?.reportError("Serialization error")
                     return
                 }
                 switch fetchingMode {
@@ -42,10 +44,22 @@ class RepositoriesViewModel {
                 if let newPage = repositories.last?.id {
                     self?.currentPage = Int32(newPage)
                 }
-                self?.isFetchingData = false
-                self?.delegate?.didUpdateData()
+                if self?.repositories.isEmpty ?? true {
+                    self?.reportError("No Results Yet")
+                } else {
+                    self?.delegate?.didUpdateData()
+                }
+            } else if let error = error {
+                self?.reportError(error.localizedDescription)
+            } else {
+                self?.reportError("Unexpected Error")
             }
+            self?.isFetchingData = false
         }
+    }
+    
+    private func reportError(_ description: String) {
+        self.delegate?.didFindError(description: description)
     }
     
     var itemsCount: Int {

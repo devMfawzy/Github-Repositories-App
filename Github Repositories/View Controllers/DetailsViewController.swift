@@ -9,6 +9,7 @@
 import UIKit
 import SDWebImage
 import ABLoaderView
+import Toast_Swift
 
 class DetailsViewController: UIViewController {
 
@@ -88,5 +89,12 @@ extension DetailsViewController: ViewModelDelegate {
     func didUpdateData() {
         loadData()
     }
-        
+
+    func didFindError(description: String) {
+        loadData()
+        self.view.makeToast(description, point: self.view.center, title: nil, image: #imageLiteral(resourceName: "icon_error_offline")) { [weak self] (done) in
+            self?.navigationController?.popViewController(animated: true)
+        }
+    }
+    
 }
