@@ -30,6 +30,16 @@
 -(void)getRepositories:(int)page limit:(int)limit compeletion:(Compeletion)compeletionBlock {
     NSURL * url = [self urlOfRepositoriesInPage:page limit:limit];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [self perfromDataTask:urlRequest compeletion:compeletionBlock];
+}
+
+-(void)getInfo:(Compeletion)compeletionBlock {
+    NSURL *url = [NSURL URLWithString:_baseURL];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [self perfromDataTask:urlRequest compeletion:compeletionBlock];
+}
+
+-(void)perfromDataTask:(NSURLRequest *)urlRequest compeletion:(Compeletion)compeletionBlock {
     NSURLSessionDataTask *dataTask = [_session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             compeletionBlock(data,error);

@@ -1,18 +1,22 @@
 PODS:
+  - ABLoaderView (1.0.2)
   - SDWebImage (5.9.2):
     - SDWebImage/Core (= 5.9.2)
   - SDWebImage/Core (5.9.2)
 
 DEPENDENCIES:
+  - ABLoaderView
   - SDWebImage (~> 5.9)
 
 SPEC REPOS:
   trunk:
+    - ABLoaderView
     - SDWebImage
 
 SPEC CHECKSUMS:
+  ABLoaderView: 389caecbd6f855bfcf3c1c0d80fb14ce4ab9da2c
   SDWebImage: 0b42b8719ab0c5257177d5894306e8a336b21cbb
 
-PODFILE CHECKSUM: 8eed75440a52a945b63cc16c604d36ee7f60e07f
+PODFILE CHECKSUM: 402f813a757bcb1bcb7bdfd8128486cd7067fa19
 
 COCOAPODS: 1.9.3

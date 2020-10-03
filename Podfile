@@ -6,6 +6,7 @@ target 'Github Repositories' do
   use_frameworks!
 
   pod 'SDWebImage', '~> 5.9'
+  pod 'ABLoaderView'
 
   target 'Github RepositoriesTests' do
     inherit! :search_paths

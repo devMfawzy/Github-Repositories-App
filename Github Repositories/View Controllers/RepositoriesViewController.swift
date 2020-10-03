@@ -73,6 +73,14 @@ extension RepositoriesViewController: UITableViewDelegate {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let detailsViewController = UIStoryboard(name: "Details", bundle: nil).instantiateViewController(identifier: "DetailsViewController") as? DetailsViewController else {
+            return
+        }
+        detailsViewController.dataSource = self
+        navigationController?.pushViewController(detailsViewController, animated: true)
+    }
+    
 }
 
 //MARK: - Repo Model Delegate
@@ -86,6 +94,36 @@ extension RepositoriesViewController: ViewModelDelegate {
     
     func willFetchData() {
         self.activityIndicator.startAnimating()
+    }
+    
+}
+
+//MARK: - Details View Data Source
+
+extension RepositoriesViewController: DetailsViewDataSource {
+    
+    var indexOfSelectedRow: Int? {
+        return tableView.indexPathForSelectedRow?.row
+    }
+    
+    func avatarUrl() -> String? {
+        guard let index = indexOfSelectedRow else { return nil }
+        return viewModel?.RepositoryAt(index: index).owner?.avatarUrl
+    }
+    
+    func loginName() -> String? {
+        guard let index = indexOfSelectedRow else { return nil }
+        return viewModel?.RepositoryAt(index: index).owner?.login
+    }
+    
+    func repoName() -> String? {
+        guard let index = indexOfSelectedRow else { return nil }
+        return viewModel?.RepositoryAt(index: index).name
+    }
+    
+    func userUrl() -> String? {
+        guard let index = indexOfSelectedRow else { return nil }
+        return viewModel?.RepositoryAt(index: index).owner?.url
     }
     
 }
