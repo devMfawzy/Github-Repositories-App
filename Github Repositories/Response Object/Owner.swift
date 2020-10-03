@@ -11,4 +11,5 @@ import Foundation
 struct Owner: Decodable {
     var login: String
     var avatarUrl: String
+    var url: String?
 }

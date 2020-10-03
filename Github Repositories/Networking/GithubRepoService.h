@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(GithubRepoService *)serviceWithBaseURL:(NSString *)urlString;
 -(void)getRepositories:(int)page limit:(int)limit compeletion:(Compeletion)compeletionBlock;
+-(void)getInfo:(Compeletion)compeletionBlock;
 
 @end
 

@@ -11,5 +11,6 @@ import Foundation
 struct Repository: Decodable {
     let id: Int
     var name: String
+    var description: String?
     var owner: Owner?
 }
