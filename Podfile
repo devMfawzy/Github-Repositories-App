@@ -7,7 +7,8 @@ target 'Github Repositories' do
 
   pod 'SDWebImage', '~> 5.9'
   pod 'ABLoaderView'
-
+  pod 'Toast-Swift', '~> 5.0.1'
+  
   target 'Github RepositoriesTests' do
     inherit! :search_paths
     # Pods for testing

@@ -8,12 +8,15 @@
 
 import UIKit
 import SDWebImage
+import Toast_Swift
 
 class RepositoriesViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
-    
+    @IBOutlet weak var errorPlaceholderView: UIView!
+    private lazy var errorView = ErrorView.fromNib()
+
     private var loadMoreThreshold = 0.8
     
     private var viewModel: RepositoriesViewModel?
@@ -34,6 +37,13 @@ class RepositoriesViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.activityIndicator.center = self.view.center
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let indexPathForSelectedRow = tableView.indexPathForSelectedRow {
+            self.tableView.deselectRow(at: indexPathForSelectedRow, animated: true)
+        }
     }
 
 }
@@ -90,12 +100,30 @@ extension RepositoriesViewController: ViewModelDelegate {
     func didUpdateData() {
         self.tableView.reloadData()
         self.activityIndicator.stopAnimating()
+        errorPlaceholderView.isHidden = true
     }
     
     func willFetchData() {
         self.activityIndicator.startAnimating()
+        errorPlaceholderView.isHidden = true
     }
     
+    func didFindError(description: String) {
+        self.activityIndicator.stopAnimating()
+        if viewModel?.itemsCount ?? 0 > 0 {
+            self.view.makeToast(description)
+        } else {
+            if !self.errorPlaceholderView.subviews.contains(errorView) {
+                errorView.bounds = self.errorPlaceholderView.bounds
+                self.errorPlaceholderView.addSubview(errorView)
+                errorView.onRetry { [weak self] in
+                    self?.viewModel?.loadData(fetchingMode: .append)
+                }
+            }
+            errorPlaceholderView.isHidden = false
+            errorView.label.text = description
+        }
+    }
 }
 
 //MARK: - Details View Data Source

@@ -3,20 +3,24 @@ PODS:
   - SDWebImage (5.9.2):
     - SDWebImage/Core (= 5.9.2)
   - SDWebImage/Core (5.9.2)
+  - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
   - ABLoaderView
   - SDWebImage (~> 5.9)
+  - Toast-Swift (~> 5.0.1)
 
 SPEC REPOS:
   trunk:
     - ABLoaderView
     - SDWebImage
+    - Toast-Swift
 
 SPEC CHECKSUMS:
   ABLoaderView: 389caecbd6f855bfcf3c1c0d80fb14ce4ab9da2c
   SDWebImage: 0b42b8719ab0c5257177d5894306e8a336b21cbb
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 402f813a757bcb1bcb7bdfd8128486cd7067fa19
+PODFILE CHECKSUM: 79af97e0bdcadddca982a24b970194909b909a14
 
 COCOAPODS: 1.9.3

@@ -26,10 +26,15 @@ class DetailsViewModel {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 guard let user = try? decoder.decode(User.self, from: data) else {
+                    self?.delegate?.didFindError(description: "Serialization error")
                     return
                 }
                 self?.user = user
                 self?.delegate?.didUpdateData()
+            } else if let error = error {
+                self?.delegate?.didFindError(description: error.localizedDescription)
+            } else {
+                self?.delegate?.didFindError(description: "Unexpected Error")
             }
         }
     }
