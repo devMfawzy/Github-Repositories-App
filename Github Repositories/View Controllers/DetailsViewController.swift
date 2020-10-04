@@ -13,20 +13,20 @@ import Toast_Swift
 
 class DetailsViewController: UIViewController {
 
-    @IBOutlet private weak var avatarImageView: UIImageView!
-    @IBOutlet private weak var userNameLabel: UILabel!
-    @IBOutlet private weak var loginNameLabel: UILabel!
-    @IBOutlet private weak var bioLabel: UILabel!
-    @IBOutlet private weak var companyLabel: UILabel!
-    @IBOutlet private weak var locationLabel: UILabel!
-    @IBOutlet private weak var followersCountLabel: UILabel!
-    @IBOutlet private weak var followingCountLabel: UILabel!
-    @IBOutlet private weak var twitterLabel: UILabel!
-    @IBOutlet private weak var twitterView: UIView!
-    @IBOutlet private weak var companyView: UIView!
-    @IBOutlet private weak var locatiomView: UIView!
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var loginNameLabel: UILabel!
+    @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var companyLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var followersCountLabel: UILabel!
+    @IBOutlet weak var followingCountLabel: UILabel!
+    @IBOutlet weak var twitterLabel: UILabel!
+    @IBOutlet weak var twitterView: UIView!
+    @IBOutlet weak var companyView: UIView!
+    @IBOutlet weak var locatiomView: UIView!
         
-    private var viewModel: DetailsViewModel?
+    var viewModel: DetailsViewModel?
     
     weak var dataSource: DetailsViewDataSource?
     

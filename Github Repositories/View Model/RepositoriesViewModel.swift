@@ -13,20 +13,25 @@ class RepositoriesViewModel {
     private let limit: Int32 = 10
     private var currentPage: Int32 = 0
     private weak var delegate: ViewModelDelegate?
-    private(set) var repoService: GithubRepoService
+    private(set) var repoService: RepoServiceProtocol?
     private(set) var repositories = [Repository]()
     private var isFetchingData = false
     
-    init(repoService: GithubRepoService, delegate: ViewModelDelegate) {
+    init(repoService: RepoServiceProtocol, delegate: ViewModelDelegate) {
         self.repoService = repoService
         self.delegate = delegate
+    }
+    
+    init(repositories: [Repository], delegate: ViewModelDelegate) {
+          self.repositories = repositories
+          self.delegate = delegate
     }
     
     func loadData(fetchingMode: FetchingMode = .replace) {
         guard !isFetchingData else { return }
         self.delegate?.willFetchData()
         isFetchingData = true
-        repoService.getRepositories(currentPage, limit: limit) { [weak self] (data, error) in
+        repoService?.getRepositories(currentPage, limit: limit) { [weak self] (data, error) in
             if let data = data {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
