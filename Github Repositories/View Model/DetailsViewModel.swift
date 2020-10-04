@@ -11,17 +11,22 @@ import Foundation
 class DetailsViewModel {
     
     private weak var delegate: ViewModelDelegate?
-    private var userInfoService: GithubRepoService
+    private var userInfoService: RepoServiceProtocol?
     private var user: User?
     
-    init(userInfoService: GithubRepoService, delegate: ViewModelDelegate) {
+    init(userInfoService: RepoServiceProtocol, delegate: ViewModelDelegate) {
         self.userInfoService = userInfoService
+        self.delegate = delegate
+    }
+    
+    init(user: User, delegate: ViewModelDelegate) {
+        self.user = user
         self.delegate = delegate
     }
     
     func loadData() {
         self.delegate?.willFetchData()
-        userInfoService.getInfo() { [weak self] (data, error) in
+        userInfoService?.getInfo() { [weak self] (data, error) in
             if let data = data {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase

@@ -12,14 +12,14 @@ import Toast_Swift
 
 class RepositoriesViewController: UIViewController {
 
-    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var errorPlaceholderView: UIView!
     private lazy var errorView = ErrorView.fromNib()
 
     private var loadMoreThreshold = 0.8
     
-    private var viewModel: RepositoriesViewModel?
+    var viewModel: RepositoriesViewModel?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,6 +124,7 @@ extension RepositoriesViewController: ViewModelDelegate {
             errorView.label.text = description
         }
     }
+    
 }
 
 //MARK: - Details View Data Source
