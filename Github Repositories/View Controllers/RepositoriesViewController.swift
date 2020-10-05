@@ -18,6 +18,7 @@ class RepositoriesViewController: UIViewController {
     private lazy var errorView = ErrorView.fromNib()
 
     private var loadMoreThreshold = 0.8
+    private var lastYOffset: CGFloat = 0.0
     
     var viewModel: RepositoriesViewModel?
         
@@ -71,6 +72,12 @@ extension RepositoriesViewController: UITableViewDataSource {
 extension RepositoriesViewController: UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let newYOffset = scrollView.contentOffset.y
+        let oldYOffset = lastYOffset
+        self.lastYOffset = newYOffset
+        guard newYOffset > oldYOffset else {
+            return
+        }
         guard let totalItemsCount = viewModel?.itemsCount else {
             return
         }
